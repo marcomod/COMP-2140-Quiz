@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>COMP 2140 Practice Quiz</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <main class="quiz-shell">
+      <section class="quiz-card">
+        <div id="setup-screen" class="home-screen">
+          <header class="quiz-header home-header">
+            <div>
+              <p class="eyebrow">Comp 2140</p>
+              <h1>Choose a Quiz Set</h1>
+              <p class="setup-subhead">Pick a set and start immediately.</p>
+            </div>
+          </header>
+
+          <p class="setup-lead" id="setup-error"></p>
+
+          <label
+            class="shuffle-toggle setup-shuffle"
+            for="shuffle-toggle-setup"
+          >
+            <input id="shuffle-toggle-setup" type="checkbox" />
+            <span>Shuffle questions</span>
+          </label>
+
+          <div id="quiz-set-list" class="section-list home-section-list"></div>
+        </div>
+
+        <div id="quiz-session" class="hidden">
+          <header class="quiz-header">
+            <div>
+              <p class="eyebrow">Comp 2140</p>
+              <h1>COMP 2140 Practice Exam</h1>
+              <p class="setup-subhead" id="set-badge">Mode</p>
+            </div>
+            <div class="quiz-header-actions">
+              <button
+                class="btn ghost small"
+                id="back-to-picker-btn"
+                type="button"
+              >
+                Back to Home
+              </button>
+              <div class="score-chip">
+                Score
+                <strong id="score-display">0</strong>
+              </div>
+            </div>
+          </header>
+
+          <div class="quiz-meta">
+            <div id="question-counter">Question 1 of 0 (0 left)</div>
+            <div class="answer-stats">
+              <span class="stat-pill correct-pill"
+                >Correct: <span id="correct-count">0</span></span
+              >
+              <span class="stat-pill wrong-pill"
+                >Wrong: <span id="wrong-count">0</span></span
+              >
+            </div>
+            <div class="quiz-options">
+              <label class="shuffle-toggle" for="shuffle-toggle">
+                <input id="shuffle-toggle" type="checkbox" />
+                <span>Shuffle this set</span>
+              </label>
+            </div>
+          </div>
+
+          <div id="quiz-screen">
+            <div class="progress-wrap" aria-live="polite">
+              <div class="progress-bar" role="progressbar">
+                <div class="progress-fill" id="progress"></div>
+              </div>
+            </div>
+
+            <article class="question-card">
+              <div id="context-area"></div>
+              <div class="question-text" id="question-text"></div>
+              <div class="options-grid" id="options-container"></div>
+              <div class="explanation" id="explanation"></div>
+            </article>
+
+            <div class="controls">
+              <button class="btn ghost" id="prev-btn" type="button">
+                Previous Question
+              </button>
+              <button class="btn ghost" id="submit-btn">Check Answer</button>
+              <button class="btn" id="next-btn" style="display: none">
+                Next Question
+              </button>
+            </div>
+          </div>
+
+          <section id="results-screen" class="results-screen">
+            <h2>Exam Complete!</h2>
+            <div class="final-score" id="final-score"></div>
+            <p id="final-msg"></p>
+            <div class="controls">
+              <button class="btn ghost" id="change-set-btn" type="button">
+                Back to Home
+              </button>
+              <button class="btn" id="retake-btn">Retake Exam</button>
+            </div>
+          </section>
+        </div>
+      </section>
+    </main>
+
+    <script src="./script.js" defer></script>
+  </body>
+</html>
