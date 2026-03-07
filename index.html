@@ -14,7 +14,7 @@
             <div>
               <p class="eyebrow">Comp 2140</p>
               <h1>Choose a Quiz Set</h1>
-              <p class="setup-subhead">Pick a set and start immediately.</p>
+              <p class="setup-subhead">Pick one or more sets and start.</p>
             </div>
           </header>
 
@@ -27,6 +27,19 @@
             <input id="shuffle-toggle-setup" type="checkbox" />
             <span>Shuffle questions</span>
           </label>
+
+          <div class="setup-controls">
+            <button
+              class="btn ghost small hidden"
+              id="clear-selection-btn"
+              type="button"
+            >
+              Clear Selection
+            </button>
+            <button class="btn" id="start-selected-btn" type="button" disabled>
+              Start Selected Sets
+            </button>
+          </div>
 
           <div id="quiz-set-list" class="section-list home-section-list"></div>
         </div>
@@ -46,16 +59,15 @@
               >
                 Back to Home
               </button>
-              <div class="score-chip">
-                Score
-                <strong id="score-display">0</strong>
-              </div>
             </div>
           </header>
 
           <div class="quiz-meta">
             <div id="question-counter">Question 1 of 0 (0 left)</div>
             <div class="answer-stats">
+              <span class="stat-pill score-pill"
+                >Score: <span id="score-percent">0%</span></span
+              >
               <span class="stat-pill correct-pill"
                 >Correct: <span id="correct-count">0</span></span
               >
@@ -85,14 +97,17 @@
               <div class="explanation" id="explanation"></div>
             </article>
 
-            <div class="controls">
-              <button class="btn ghost" id="prev-btn" type="button">
-                Previous Question
-              </button>
-              <button class="btn ghost" id="submit-btn">Check Answer</button>
-              <button class="btn" id="next-btn" style="display: none">
-                Next Question
-              </button>
+              <div class="controls">
+                <button class="btn ghost" id="prev-btn" type="button">
+                  Previous Question
+                </button>
+                <button class="btn ghost" id="skip-btn" type="button">
+                  Skip Question
+                </button>
+                <button class="btn ghost" id="submit-btn">Check Answer</button>
+                <button class="btn" id="next-btn" style="display: none">
+                  Next Question
+                </button>
             </div>
           </div>
 

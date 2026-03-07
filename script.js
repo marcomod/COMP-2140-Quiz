@@ -676,6 +676,7 @@ const state = {
   activePool: [],
   activeSections: ["all"],
   activeSetLabel: ALL_QUESTIONS_LABEL,
+  selectedSectionIds: [],
   questionStates: [],
   score: 0,
   correct: 0,
@@ -689,6 +690,8 @@ const els = {
   quizSetList: document.getElementById("quiz-set-list"),
   setupError: document.getElementById("setup-error"),
   setupShuffle: document.getElementById("shuffle-toggle-setup"),
+  startSelectedBtn: document.getElementById("start-selected-btn"),
+  clearSelectionBtn: document.getElementById("clear-selection-btn"),
   changeSetBtn: document.getElementById("change-set-btn"),
   backToPickerBtn: document.getElementById("back-to-picker-btn"),
   setBadge: document.getElementById("set-badge"),
@@ -698,7 +701,8 @@ const els = {
   nextBtn: document.getElementById("next-btn"),
   prevBtn: document.getElementById("prev-btn"),
   submitBtn: document.getElementById("submit-btn"),
-  scoreDisplay: document.getElementById("score-display"),
+  scorePercent: document.getElementById("score-percent"),
+  skipBtn: document.getElementById("skip-btn"),
   progressBar: document.getElementById("progress"),
   contextArea: document.getElementById("context-area"),
   quizScreen: document.getElementById("quiz-screen"),
@@ -726,6 +730,20 @@ function activeQuestionCount() {
   return state.order.length;
 }
 
+function getScorePercentage(total = activeQuestionCount()) {
+  if (total <= 0) {
+    return 0;
+  }
+
+  return Math.round((state.score / total) * 100);
+}
+
+function updateScoreDisplay() {
+  if (els.scorePercent) {
+    els.scorePercent.textContent = `${getScorePercentage(activeQuestionCount())}%`;
+  }
+}
+
 function buildSectionSelector() {
   if (!els.quizSetList) {
     return;
@@ -738,6 +756,7 @@ function buildSectionSelector() {
     card.type = "button";
     card.className = "section-card set-card";
     card.dataset.sectionId = section.id;
+    card.setAttribute("aria-pressed", "false");
 
     const text = document.createElement("div");
     text.className = "section-info";
@@ -746,10 +765,84 @@ function buildSectionSelector() {
       <p class="section-count">${section.description}</p>
     `;
 
+    const check = document.createElement("span");
+    check.className = "section-check";
+    check.setAttribute("aria-hidden", "true");
+
     card.appendChild(text);
-    card.addEventListener("click", () => startSetById(section.id));
+    card.appendChild(check);
+    card.addEventListener("click", () => toggleSectionSelection(section.id));
     els.quizSetList.appendChild(card);
   });
+
+  updateSectionSelectionUI();
+}
+
+function updateSectionSelectionUI() {
+  const selectedSet = new Set(state.selectedSectionIds);
+
+  if (els.quizSetList) {
+    Array.from(els.quizSetList.children).forEach((card) => {
+      const sectionId = card.dataset.sectionId;
+      const isSelected = selectedSet.has(sectionId);
+      card.classList.toggle("selected", isSelected);
+      card.setAttribute("aria-pressed", isSelected ? "true" : "false");
+    });
+  }
+
+  if (els.startSelectedBtn) {
+    const count = state.selectedSectionIds.length;
+    els.startSelectedBtn.disabled = count === 0;
+    if (count === 0) {
+      els.startSelectedBtn.textContent = "Start Selected Sets";
+    } else if (count === 1) {
+      els.startSelectedBtn.textContent = "Start 1 Set";
+    } else {
+      els.startSelectedBtn.textContent = `Start ${count} Sets`;
+    }
+  }
+
+  if (els.clearSelectionBtn) {
+    els.clearSelectionBtn.classList.toggle(
+      "hidden",
+      state.selectedSectionIds.length === 0,
+    );
+  }
+}
+
+function clearSectionSelection() {
+  state.selectedSectionIds = [];
+  updateSectionSelectionUI();
+}
+
+function toggleSectionSelection(sectionId) {
+  const selected = new Set(state.selectedSectionIds);
+  if (selected.has(sectionId)) {
+    selected.delete(sectionId);
+  } else {
+    selected.add(sectionId);
+  }
+
+  state.selectedSectionIds = Array.from(selected);
+  updateSectionSelectionUI();
+}
+
+function startSelectedSet() {
+  if (state.selectedSectionIds.length === 0) {
+    els.setupError.textContent = "Pick at least one set to continue.";
+    return;
+  }
+
+  const selection = getSectionSelectionFromIds(state.selectedSectionIds);
+  const started = setQuestionSet(
+    selection.label,
+    selection.indexes,
+    selection.ids,
+  );
+
+  if (!started) {
+    els.setupError.textContent = "Could not start that quiz set.";
+  }
 }
 
 function getSectionSelectionFromIds(sectionIds) {
@@ -787,19 +880,6 @@ function getSectionSelectionFromIds(sectionIds) {
   };
 }
 
-function startSetById(sectionId) {
-  const selection = getSectionSelectionFromIds([sectionId]);
-  const started = setQuestionSet(
-    selection.label,
-    selection.indexes,
-    selection.ids,
-  );
-
-  if (!started) {
-    els.setupError.textContent = "Could not start that quiz set.";
-  }
-}
-
 function setQuestionSet(sectionLabels, selectedIndexes, selectedIds = []) {
   if (selectedIndexes.length === 0) {
     return false;
@@ -818,7 +898,7 @@ function setQuestionSet(sectionLabels, selectedIndexes, selectedIds = []) {
   state.correct = 0;
   state.wrong = 0;
 
-  els.scoreDisplay.textContent = "0";
+  updateScoreDisplay();
   els.correctCount.textContent = "0";
   els.wrongCount.textContent = "0";
   els.setupError.textContent = "";
@@ -843,6 +923,7 @@ function showSetup() {
   if (els.shuffleToggle) {
     els.shuffleToggle.checked = false;
   }
+  updateSectionSelectionUI();
   if (els.setupError) {
     els.setupError.textContent = "";
   }
@@ -927,6 +1008,8 @@ function renderQuestion() {
   els.submitBtn.disabled = true;
   els.submitBtn.style.display = "inline-flex";
   els.nextBtn.style.display = "none";
+  els.skipBtn.style.display = "inline-flex";
+  els.skipBtn.disabled = false;
   if (els.prevBtn) {
     els.prevBtn.disabled = state.currentIndex === 0;
   }
@@ -965,6 +1048,7 @@ function renderQuestion() {
   const savedState = state.questionStates[state.currentIndex];
 
   if (!savedState) {
+    updateScoreDisplay();
     return;
   }
 
@@ -980,7 +1064,7 @@ function renderQuestion() {
       options[state.selectedIndex].classList.add("correct");
     }
   } else {
-    if (options[state.selectedIndex]) {
+    if (savedState.selectedIndex !== null && options[state.selectedIndex]) {
       options[state.selectedIndex].classList.add("wrong");
     }
     if (options[data.answer]) {
@@ -990,13 +1074,25 @@ function renderQuestion() {
 
   els.submitBtn.style.display = "none";
   els.nextBtn.style.display = "inline-flex";
+  els.skipBtn.disabled = true;
 
   if (data.explanation) {
-    els.explanation.textContent = `Why: ${data.explanation}`;
+    if (savedState.skipped) {
+      els.explanation.textContent = `Skipped. Correct: ${labelFor(
+        data.answer,
+      )}. ${data.explanation}`;
+    } else {
+      els.explanation.textContent = `Why: ${data.explanation}`;
+    }
     els.explanation.classList.add("show");
   } else {
-    els.explanation.textContent = "";
-    els.explanation.classList.remove("show");
+    if (savedState.skipped) {
+      els.explanation.textContent = `Skipped. Correct: ${labelFor(data.answer)}.`;
+      els.explanation.classList.add("show");
+    } else {
+      els.explanation.textContent = "";
+      els.explanation.classList.remove("show");
+    }
   }
 }
 
@@ -1036,19 +1132,21 @@ function checkAnswer() {
   disableOptions();
   els.submitBtn.style.display = "none";
   els.nextBtn.style.display = "inline-flex";
+  els.skipBtn.disabled = true;
   const isCorrect = state.selectedIndex === data.answer;
 
   if (isCorrect) {
     state.score += 1;
     state.correct += 1;
     options[state.selectedIndex].classList.add("correct");
-    els.scoreDisplay.textContent = String(state.score);
     els.correctCount.textContent = String(state.correct);
+    updateScoreDisplay();
   } else {
     state.wrong += 1;
     options[state.selectedIndex].classList.add("wrong");
     options[data.answer].classList.add("correct");
     els.wrongCount.textContent = String(state.wrong);
+    updateScoreDisplay();
   }
 
   state.questionStates[state.currentIndex] = {
@@ -1063,6 +1161,48 @@ function checkAnswer() {
   } else {
     els.explanation.textContent = "";
     els.explanation.classList.remove("show");
+  }
+}
+
+function skipQuestion() {
+  const savedState = state.questionStates[state.currentIndex];
+  if (savedState?.answered) {
+    return;
+  }
+
+  const data = currentQuestion();
+  const options = Array.from(els.optionsContainer.children);
+  disableOptions();
+  els.submitBtn.style.display = "none";
+  els.nextBtn.style.display = "inline-flex";
+  els.skipBtn.disabled = true;
+
+  if (state.selectedIndex !== null && options[state.selectedIndex]) {
+    options[state.selectedIndex].classList.add("wrong");
+  }
+  if (options[data.answer]) {
+    options[data.answer].classList.add("correct");
+  }
+
+  state.wrong += 1;
+  state.questionStates[state.currentIndex] = {
+    answered: true,
+    selectedIndex: state.selectedIndex,
+    isCorrect: false,
+    skipped: true,
+  };
+
+  els.wrongCount.textContent = String(state.wrong);
+  updateScoreDisplay();
+
+  if (data.explanation) {
+    els.explanation.textContent = `Skipped. Correct: ${labelFor(data.answer)}. ${
+      data.explanation
+    }`;
+    els.explanation.classList.add("show");
+  } else {
+    els.explanation.textContent = `Skipped. Correct: ${labelFor(data.answer)}.`;
+    els.explanation.classList.add("show");
   }
 }
 
@@ -1135,7 +1275,7 @@ function restartQuiz() {
   state.score = 0;
   state.correct = 0;
   state.wrong = 0;
-  els.scoreDisplay.textContent = "0";
+  updateScoreDisplay();
   els.correctCount.textContent = "0";
   els.wrongCount.textContent = "0";
   els.quizScreen.classList.remove("hidden");
@@ -1161,6 +1301,9 @@ function initQuiz() {
     els.backToPickerBtn.addEventListener("click", showSetup);
   }
   els.submitBtn.addEventListener("click", checkAnswer);
+  els.skipBtn.addEventListener("click", skipQuestion);
+  els.startSelectedBtn?.addEventListener("click", startSelectedSet);
+  els.clearSelectionBtn?.addEventListener("click", clearSectionSelection);
   els.nextBtn.addEventListener("click", goNextQuestion);
   els.prevBtn.addEventListener("click", goPrevQuestion);
   els.retakeBtn.addEventListener("click", restartQuiz);
