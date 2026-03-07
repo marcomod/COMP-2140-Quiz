@@ -730,12 +730,13 @@ function activeQuestionCount() {
   return state.order.length;
 }
 
-function getScorePercentage(total = activeQuestionCount()) {
+function getScorePercentage() {
+  const total = state.correct + state.wrong;
   if (total <= 0) {
     return 0;
   }
 
-  return Math.round((state.score / total) * 100);
+  return Math.round((state.correct / total) * 100);
 }
 
 function updateScoreDisplay() {
