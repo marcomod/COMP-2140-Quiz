@@ -610,9 +610,901 @@ const quizData = [
     answer: 1,
     explanation: "",
   },
+  {
+    contextType: "text",
+    context:
+      "Questions Q1 to Q4 are based on the following incomplete JavaCup specification\n" +
+      "It is supposed to count the number of methods in a program written in a very small language that is a subset of our Tiny language. Suppose that the symbols in uppercase letters are terminals, and they are handled by the scanner correctly. Your task is to fill in the missing parts in the boxes.\n\n" +
+      "[      Q1      ] PLUS, MINUS, TIMES, DIVIDE, LPAREN, RPAREN, SEMI;\n" +
+      "non terminal [      Q2      ] program, method;\n\n" +
+      "program ::= method {: [      Q3      ] :}\n" +
+      "          | method:e1 program:e2 {: RESULT = e1 + e2; :};\n\n" +
+      "method ::= INT ID LPAREN RPAREN BEGIN assignmentStatementList END;\n\n" +
+      "assignmentStatementList ::= assignmentStatement | assignmentStatement [   Q4   ]\n\n" +
+      "assignmentStatement ::= ID EQUALSIGN expr SEMI;",
+    q: "Answer for Q1 is",
+    options: [
+      "terminal",
+      "non terminal",
+      "terminal Integer",
+      "terminal String",
+    ],
+    answer: 0,
+    explanation: "",
+  },
+  {
+    contextType: "text",
+    context:
+      "Questions Q1 to Q4 are based on the following incomplete JavaCup specification\n" +
+      "It is supposed to count the number of methods in a program written in a very small language that is a subset of our Tiny language. Suppose that the symbols in uppercase letters are terminals, and they are handled by the scanner correctly. Your task is to fill in the missing parts in the boxes.\n\n" +
+      "[      Q1      ] PLUS, MINUS, TIMES, DIVIDE, LPAREN, RPAREN, SEMI;\n" +
+      "non terminal [      Q2      ] program, method;\n\n" +
+      "program ::= method {: [      Q3      ] :}\n" +
+      "          | method:e1 program:e2 {: RESULT = e1 + e2; :};\n\n" +
+      "method ::= INT ID LPAREN RPAREN BEGIN assignmentStatementList END;\n\n" +
+      "assignmentStatementList ::= assignmentStatement | assignmentStatement [   Q4   ]\n\n" +
+      "assignmentStatement ::= ID EQUALSIGN expr SEMI;",
+    q: "Answer for Q2 is",
+    options: ["String", "Integer", "Program", "Method", "EMPTY"],
+    answer: 1,
+    explanation: "",
+  },
+  {
+    contextType: "text",
+    context:
+      "Questions Q1 to Q4 are based on the following incomplete JavaCup specification\n" +
+      "It is supposed to count the number of methods in a program written in a very small language that is a subset of our Tiny language. Suppose that the symbols in uppercase letters are terminals, and they are handled by the scanner correctly. Your task is to fill in the missing parts in the boxes.\n\n" +
+      "[      Q1      ] PLUS, MINUS, TIMES, DIVIDE, LPAREN, RPAREN, SEMI;\n" +
+      "non terminal [      Q2      ] program, method;\n\n" +
+      "program ::= method {: [      Q3      ] :}\n" +
+      "          | method:e1 program:e2 {: RESULT = e1 + e2; :};\n\n" +
+      "method ::= INT ID LPAREN RPAREN BEGIN assignmentStatementList END;\n\n" +
+      "assignmentStatementList ::= assignmentStatement | assignmentStatement [   Q4   ]\n\n" +
+      "assignmentStatement ::= ID EQUALSIGN expr SEMI;",
+    q: "Answer for Q3 is",
+    options: ["RESULT=1;", "RESULT:=1;", "RESULT=1", "RESULT:=1"],
+    answer: 0,
+    explanation: "",
+  },
+  {
+    contextType: "text",
+    context:
+      "Questions Q1 to Q4 are based on the following incomplete JavaCup specification\n" +
+      "It is supposed to count the number of methods in a program written in a very small language that is a subset of our Tiny language. Suppose that the symbols in uppercase letters are terminals, and they are handled by the scanner correctly. Your task is to fill in the missing parts in the boxes.\n\n" +
+      "[      Q1      ] PLUS, MINUS, TIMES, DIVIDE, LPAREN, RPAREN, SEMI;\n" +
+      "non terminal [      Q2      ] program, method;\n\n" +
+      "program ::= method {: [      Q3      ] :}\n" +
+      "          | method:e1 program:e2 {: RESULT = e1 + e2; :};\n\n" +
+      "method ::= INT ID LPAREN RPAREN BEGIN assignmentStatementList END;\n\n" +
+      "assignmentStatementList ::= assignmentStatement | assignmentStatement [   Q4   ]\n\n" +
+      "assignmentStatement ::= ID EQUALSIGN expr SEMI;",
+    q: "Answer for Q4 is",
+    options: [
+      "EMPTY",
+      "assignmentStatement",
+      "assignmentStatementList",
+      "SEMI",
+    ],
+    answer: 2,
+    explanation: "",
+  },
+  {
+    contextType: "text",
+    context: "",
+    q: "Equation (a|b)^ = ((a|b)^)^ is",
+    options: ["true", "false", "mostly true"],
+    answer: 0,
+    explanation: "",
+  },
+  {
+    contextType: "text",
+    context: "",
+    q: "Every RE can be translated into an NFA",
+    options: ["true", "false", "mostly true"],
+    answer: 0,
+    explanation: "",
+  },
+  {
+    contextType: "text",
+    context: "",
+    q: "The following automaton accepts which of the following strings?",
+    options: ["a", "ab", "abb", "aab"],
+    answer: 3,
+    explanation: "",
+  },
+  {
+    contextType: "text",
+    context: "",
+    q: "Given the following grammar E -> E + T | T and T -> ID, which of the following is the leftmost derivation for ID+ID+ID?",
+    options: [
+      "E => E + T => E + T + T => T + T + T => T + T + ID => T + ID + ID => ID + ID + ID",
+      "E => E + T => E + ID => E + T + ID => E + ID + ID => T + ID + ID => ID + ID + ID",
+      "E => E + T => E + ID => E + T + ID => T + T + ID => T + ID + ID => ID + ID + ID",
+      "E => E + T => E + T + T => T + T + T => ID + T + T => ID + ID + T => ID + ID + ID",
+    ],
+    answer: 3,
+    explanation: "",
+  },
+  {
+    contextType: "text",
+    context: "",
+    q: "Given a grammar and a sentence, if we can have only one parse tree for that sentence, then we can draw the conclusion that",
+    options: [
+      "The grammar is unambiguous",
+      "The grammar is ambiguous",
+      "The grammar is a CFG",
+      "We are not sure",
+    ],
+    answer: 3,
+    explanation: "",
+  },
+  {
+    contextType: "text",
+    context: "",
+    q: "Consider the following grammar where S is a non-terminal, if, then, and else are terminals: S -> if then | if then else | ε. Which of the following statement is NOT true?",
+    options: [
+      "The grammar is ambiguous",
+      "The grammar is unambiguous",
+      "The language has finite number of sentences.",
+      "The language can be described using a regular grammar",
+    ],
+    answer: 0,
+    explanation: "",
+  },
+  {
+    contextType: "text",
+    context: "",
+    q: "JLex is used to generate a parser from a JLex specification.",
+    options: ["true", "false", "mostly true"],
+    answer: 1,
+    explanation: "",
+  },
+  {
+    contextType: "text",
+    context: "",
+    q: "For every language, there is an unambiguous grammar.",
+    options: ["true", "false", "mostly true"],
+    answer: 1,
+    explanation: "",
+  },
+  {
+    contextType: "text",
+    context: "",
+    q: "Given a grammar that contains the following production rule, where A is a nonterminal and a and b are terminals: A -> aAa | abba. According to Chomsky hierarchy, the grammar is in",
+    options: ["Level 0", "Level 1", "Level 2", "Level 3"],
+    answer: 2,
+    explanation: "",
+  },
+  {
+    contextType: "text",
+    context: "",
+    q: "Given an ambiguous grammar. How many parse trees are there for any sentence that is in the language?",
+    options: ["0", "1", "1 or more", "2 or more"],
+    answer: 2,
+    explanation: "",
+  },
+  {
+    contextType: "text",
+    context: "",
+    q: "Suppose that you have a grammar that can give two different derivations for a sentence. Is that grammar ambiguous?",
+    options: [
+      "Definitely yes",
+      "Definitely no",
+      "There is not enough information to tell",
+      "It can't have two derivations.",
+    ],
+    answer: 2,
+    explanation: "",
+  },
+  {
+    contextType: "text",
+    context: "",
+    q: "A JavaCup specification defines which of the following?",
+    options: [
+      "Context Free Grammar",
+      "Regular Grammar",
+      "Context Sensitive Grammar",
+      "Unrestricted Grammar",
+    ],
+    answer: 0,
+    explanation: "",
+  },
+  {
+    contextType: "text",
+    context: "",
+    q: "JLex does not deal with:",
+    options: [
+      "DFA minimization",
+      "CFG",
+      "NFA to DFA transformation",
+      "Lexical analysis",
+    ],
+    answer: 1,
+    explanation: "",
+  },
+  {
+    contextType: "text",
+    context: "",
+    q: "How many sections does a JLex specification have? Recall that JLex sections are separated by %%",
+    options: ["1", "2", "3", "4"],
+    answer: 2,
+    explanation: "",
+  },
+  {
+    contextType: "text",
+    context: "",
+    q: "For the following automaton, which of the following is the corresponding regular expression?",
+    options: ["ab*c*", "a(b|c)*", "a(b|c)+", "a(b|c|aa)*", "a(b|c|aa)+"],
+    answer: 3,
+    explanation: "",
+  },
+  {
+    contextType: "text",
+    context: "",
+    q: "For the following automaton, which of the following is the corresponding regular expression?",
+    options: ["ab*", "a(b|aa)*", "a(b|aa)+", "a(b|c|aa)*", "a(b|aa)*|b"],
+    answer: 1,
+    explanation: "",
+  },
+  {
+    contextType: "text",
+    context: "",
+    q: "Given regular expression (ab)*, which of the following is the corresponding regular grammar?",
+    options: [
+      "A -> abA | ε",
+      "A -> aB; B -> bA; A -> ε",
+      "A -> abA | ab",
+      "A -> aB; B -> bA; B -> ε",
+    ],
+    answer: 1,
+    explanation: "",
+  },
+  {
+    contextType: "text",
+    context: "",
+    q: "Given the following (wrong) grammar for parameter list in assignment 3: ParameterList -> ParameterList COMMA ID | ID | ε. Which of the following can NOT be derived?",
+    options: [
+      "COMMA ID COMMA ID",
+      "ID COMMA ID",
+      "ID COMMA ID COMMA",
+      "ID COMMA ID COMMA ID",
+    ],
+    answer: 2,
+    explanation: "",
+  },
+  {
+    contextType: "text",
+    context: "",
+    q: "Given the following CFG grammar, it can be transformed into a regular grammar. Which of the following is an equivalent grammar? A -> abA | ε",
+    options: [
+      "A -> Aab; A -> ε;",
+      "A -> aB; B -> bA; B -> ε;",
+      "A -> aB; B -> bA; A -> a;",
+      "A -> aB; B -> bA; A -> ε;",
+    ],
+    answer: 3,
+    explanation: "",
+  },
+  {
+    contextType: "text",
+    context:
+      "Given the following JavaCup file\n" +
+      "terminal INT, ID, REAL, STRING, PLUS;\n" +
+      "non terminal Expr, Type;\n\n" +
+      "Type ::= INT | REAL;\n" +
+      "Expr ::= Expr PLUS ID | ID;",
+    q: "Which of the following can be accepted as input for this JavaCup file?",
+    options: ["ID PLUS ID", "INT", "ID", "ID MULTIPLY ID"],
+    answer: 1,
+    explanation: "",
+  },
+  {
+    contextType: "text",
+    context:
+      "Given the following JavaCup file\n" +
+      "terminal INT, ID, REAL, STRING, PLUS;\n" +
+      "non terminal Expr, Type;\n" +
+      "Expr ::= Expr PLUS ID;\n" +
+      "Type ::= INT | REAL | STRING;",
+    q: "Which of the following can be accepted as input for this JavaCup file? Suppose ID is correctly recognized using a scanner.",
+    options: ["ID", "ID + ID", "INT", "None of the above"],
+    answer: 3,
+    explanation: "",
+  },
+  {
+    contextType: "text",
+    context:
+      "Given the following grammar for If statement in JavaCup\n" +
+      "IfStmt ::= IF LPAREN BoolExpression RPAREN Statement;\n" +
+      "IfStmt ::= IF LPAREN BoolExpression RPAREN Statement ELSE Statement;",
+    q: "Which of the following is true about this grammar?",
+    options: [
+      "It is an ambiguous grammar",
+      "It is an unambiguous grammar",
+      "It will always generate more than one parse tree for every input If statement",
+      "It will always generate only one parse tree for every input If statement.",
+    ],
+    answer: 0,
+    explanation: "",
+  },
+  {
+    contextType: "text",
+    context:
+      "Questions Q27 to Q30 are based on the following incomplete JLex specification that is supposed to count the number of ids and keywords etc. Suppose that the variables are initialized correctly.\n" +
+      "<YYINITIAL>' [\"']* '  { quotedstring++; }\n" +
+      "<YYINITIAL>[a-zA-Z][a-zA-Z0-9]* { id++; }\n" +
+      "<YYINITIAL>{KEYWORD} { keyword++; }\n" +
+      "<YYINITIAL>[0-9]+ { num++; }\n" +
+      "\\t | \\n { }\n" +
+      ". { }",
+    q: "Given the input BEGIN x1 END, the value of keyword is",
+    options: ["0", "1", "2", "3"],
+    answer: 0,
+    explanation: "",
+  },
+  {
+    contextType: "text",
+    context:
+      "Questions Q27 to Q30 are based on the following incomplete JLex specification that is supposed to count the number of ids and keywords etc. Suppose that the variables are initialized correctly.\n" +
+      "<YYINITIAL>' [\"']* '   { quotedstring++; }\n" +
+      "<YYINITIAL>[a-zA-Z][a-zA-Z0-9]* { id++; }\n" +
+      "<YYINITIAL>{KEYWORD} { keyword++; }\n" +
+      "<YYINITIAL>[0-9]+ { num++; }\n" +
+      "\\t | \\n { }\n" +
+      ". { }",
+    q: "Given the input BEGIN x1 @ END, the value of id is",
+    options: ["0", "1", "2", "3"],
+    answer: 3,
+    explanation: "",
+  },
+  {
+    contextType: "text",
+    context:
+      "Questions Q27 to Q30 are based on the following incomplete JLex specification that is supposed to count the number of ids and keywords etc. Suppose that the variables are initialized correctly.\n" +
+      "<YYINITIAL>' [\"']* '   { quotedstring++; }\n" +
+      "<YYINITIAL>[a-zA-Z][a-zA-Z0-9]* { id++; }\n" +
+      "<YYINITIAL>{KEYWORD} { keyword++; }\n" +
+      "<YYINITIAL>[0-9]+ { num++; }\n" +
+      "\\t | \\n { }\n" +
+      ". { }",
+    q: 'Given the input BEGIN "x1" END, the value of id is',
+    options: ["0", "1", "2", "3"],
+    answer: 2,
+    explanation: "",
+  },
+  {
+    contextType: "text",
+    context:
+      "Questions Q27 to Q30 are based on the following incomplete JLex specification that is supposed to count the number of ids and keywords etc. Suppose that the variables are initialized correctly.\n" +
+      "<YYINITIAL>' [\"']* '   { quotedstring++; }\n" +
+      "<YYINITIAL>[a-zA-Z][a-zA-Z0-9]* { id++; }\n" +
+      "<YYINITIAL>{KEYWORD} { keyword++; }\n" +
+      "<YYINITIAL>[0-9]+ { num++; }\n" +
+      "\\t | \\n { }\n" +
+      ". { }",
+    q: "If we remove the last line (i.e., . {}). For the input BEGIN @ END, we will see",
+    options: [
+      "shift/reduce error",
+      "unmatched error",
+      "no error",
+      "null pointer error",
+    ],
+    answer: 1,
+    explanation: "",
+  },
+  {
+    contextType: "text",
+    context:
+      "Questions Q31 to Q33 are based on the following algorithm.\n" +
+      "Algorithm 1: Simulate DFA (dragon book p. 151)\n" +
+      "Input: An input string x, a DFA with start state s0, move(s, c) function that moves state s to a new state on input c, accepting states F.\n" +
+      'Output: "yes" if D accepts x, "no" otherwise.\n' +
+      "s = s0;\n" +
+      "while (c = nextChar()) != eof do\n" +
+      "  s = [ Q31 ]\n" +
+      "endif\n" +
+      "if [ Q32 ] then\n" +
+      '  return "yes";\n' +
+      "end\n" +
+      'return "no";',
+    q: "Answer for Q31 is",
+    options: ["move(s, c)", "c", "s in F", "s = F"],
+    answer: 0,
+    explanation: "",
+  },
+  {
+    contextType: "text",
+    context:
+      "Questions Q31 to Q33 are based on the following algorithm.\n" +
+      "Algorithm 1: Simulate DFA (dragon book p. 151)\n" +
+      "Input: An input string x, a DFA with start state s0, move(s, c) function that moves state s to a new state on input c, accepting states F.\n" +
+      'Output: "yes" if D accepts x, "no" otherwise.\n' +
+      "s = s0;\n" +
+      "while (c = nextChar()) != eof do\n" +
+      "  s = [ Q31 ]\n" +
+      "endif\n" +
+      "if [ Q32 ] then\n" +
+      '  return "yes";\n' +
+      "end\n" +
+      'return "no";',
+    q: "Answer for Q32 is",
+    options: ["s = s0", "s in F", "s = F", "move(s, c)"],
+    answer: 1,
+    explanation: "",
+  },
+  {
+    contextType: "text",
+    context: "",
+    q: "This algorithm is used in which assignment?",
+    options: ["A1", "A2", "A3", "A4", "A5"],
+    answer: 1,
+    explanation: "",
+  },
+  {
+    contextType: "text",
+    context: "",
+    q: "Which of the following is true for regular grammars?",
+    options: [
+      "A regular grammar can not be ambiguous",
+      "A regular grammar can be ambiguous",
+      "A regular grammar is always ambiguous",
+      "A regular grammar never generates multiple parse trees",
+    ],
+    answer: 1,
+    explanation: "",
+  },
+  {
+    contextType: "text",
+    context: "",
+    q: "Which of the following is the grammar for the following language on characters 'a': {a^n | n ≥ 0}?",
+    options: [
+      "A -> aA | a",
+      "A -> aA | a | aa | ε",
+      "A -> Aa | a",
+      "A -> a | aa | aA",
+    ],
+    answer: 1,
+    explanation: "",
+  },
+  {
+    contextType: "text",
+    context: "",
+    q: "Which of the following is the grammar for the following language on characters a and b: {a^n b^n | n ≥ 0}?",
+    options: [
+      "A -> aAb | ab",
+      "A -> aAa | bAb | ε",
+      "A -> aAb | ε",
+      "A -> aAa | bAb | abA",
+    ],
+    answer: 2,
+    explanation: "",
+  },
+  {
+    contextType: "text",
+    context: "",
+    q: "Which of the following is the grammar for palindromes on a and b?",
+    options: [
+      "A -> aAb | ab",
+      "A -> aAa | bAb",
+      "A -> aAa | bAb | a | b | ε",
+      "A -> aAb | ε",
+    ],
+    answer: 2,
+    explanation: "",
+  },
+  {
+    contextType: "text",
+    context: "",
+    q: "Which kind of grammar can describe the language: {a^n b^n c^n | n ≥ 0}?",
+    options: [
+      "regular grammar",
+      "context free grammar",
+      "context sensitive grammar",
+      "None of the above",
+    ],
+    answer: 2,
+    explanation: "",
+  },
+  {
+    contextType: "text",
+    context: "",
+    q: "Which of the following is the regular expression for quoted string in our Assignment 2?",
+    options: [
+      '" [^"]* "',
+      "\" [^\"]* \" | ' [^']* '",
+      '" [a-zA-Z]* "',
+      '" [a-zA-Z0-9]* "',
+      '" [a-zA-Z0-9_]+ "',
+    ],
+    answer: 1,
+    explanation: "",
+  },
+  {
+    contextType: "text",
+    context: "",
+    q: "Which of the following is the regular expression for identifiers that is used in Assignment 2?",
+    options: [
+      "[a-zA-Z]*",
+      "[a-zA-Z]+",
+      "[a-zA-Z0-9]+",
+      "[a-zA-Z][a-zA-Z0-9]*",
+      "[a-zA-Z][a-zA-Z0-9_]*",
+    ],
+    answer: 3,
+    explanation: "",
+  },
+  {
+    contextType: "text",
+    context: "",
+    q: "Which of the following is the regular expression for numbers that is used in Assignment 2?",
+    options: [
+      "[0-9]+",
+      "[0-9]+\\.[0-9]+",
+      "[0-9]+\\.[0-9]+",
+      "[0-9]+\\.[0-9]*",
+      "[0-9]+(\\.[0-9]+)?",
+    ],
+    answer: 4,
+    explanation: "",
+  },
+  {
+    contextType: "text",
+    context: "",
+    q: "Which of the following is NOT the regular expression for all the strings consisting of characters a and b?",
+    options: ["[ab]+", "(a|b)+", "(a|b|ab)+", "([ab]|[ab])+", "(ab|ba)+"],
+    answer: 4,
+    explanation: "",
+  },
+  {
+    contextType: "text",
+    context: "",
+    q: "Given two regular expressions r and s, which of the following is true?",
+    options: [
+      "r|s = rs",
+      "r|s = (s|r)*",
+      "r|s = r* | s*",
+      "(r|s)* = (r* | s*)*",
+      "None of the above",
+    ],
+    answer: 3,
+    explanation: "",
+  },
+  {
+    contextType: "text",
+    context: "",
+    q: "Given two regular expressions r, which of the following is true?",
+    options: ["rr* = r*", "r* r = r", "r* r = r+", "r* r = r*"],
+    answer: 2,
+    explanation: "",
+  },
+  {
+    contextType: "text",
+    context: "",
+    q: "Given three regular expressions r, s and t, which of the following is true?",
+    options: [
+      "(r|s)t = t(r|s)",
+      "(r|s)t = (s|r)t",
+      "(r|s)t = r*s*t",
+      "(r|s)t = rt|s",
+    ],
+    answer: 1,
+    explanation: "",
+  },
+  {
+    contextType: "text",
+    context: "",
+    q: "Given three regular expressions r, s and t, which of the following is true?",
+    options: [
+      "(r|s)t = t(r|s)",
+      "(r|s)t = rt|st",
+      "(r|s)t = rs|t",
+      "(r|s)t = r|st",
+      "None of the above",
+    ],
+    answer: 1,
+    explanation: "",
+  },
+  {
+    contextType: "text",
+    context: "",
+    q: "Which of the following is the regular expression for strings of even length that consists of lower-case English letters?",
+    options: ["((a|b)(a|b))+", "([a-z][a-z])+", "[a-zA-Z_]+", "[a-z]*"],
+    answer: 1,
+    explanation: "",
+  },
+  {
+    contextType: "text",
+    context: "",
+    q: "Which of the following is the regular expression for all possible English words that consist of lower-case and upper-case letters?",
+    options: ["(a-zA-Z)+", "([a-z][a-z])+", "[a-zA-Z]+", "[a-z]+"],
+    answer: 2,
+    explanation: "",
+  },
+  {
+    contextType: "text",
+    context: "",
+    q: "Which of the following is not part of an NFA definition?",
+    options: [
+      "Alphabet",
+      "States",
+      "Transitions",
+      "Final states",
+      "Expressions",
+    ],
+    answer: 4,
+    explanation: "",
+  },
+  {
+    contextType: "text",
+    context: "",
+    q: "The difference between NFA and DFA is",
+    options: [
+      "NFA can have multiple final states",
+      "NFA can move to multiple states from the same input",
+      "NFA can have multiple start states",
+      "NFA may not terminate",
+    ],
+    answer: 1,
+    explanation: "",
+  },
+  {
+    contextType: "text",
+    context: "",
+    q: "In Finite State Machines, the word finite means which of the following is finite?",
+    options: [
+      "The alphabet size",
+      "The number of states",
+      "The steps to run the machine",
+      "None of the above",
+    ],
+    answer: 1,
+    explanation: "",
+  },
+  {
+    contextType: "text",
+    context: "",
+    q: "The time complexity of running a DFA on a string of length n is",
+    options: ["O(1)", "O(log n)", "O(n)", "O(n^2)"],
+    answer: 2,
+    explanation: "",
+  },
+  {
+    contextType: "text",
+    context: "",
+    q: "Regular expression corresponds to which of the following level of grammars according to the Chomsky hierarchy?",
+    options: ["Level 0", "Level 1", "Level 2", "Level 3"],
+    answer: 3,
+    explanation: "",
+  },
+  {
+    contextType: "text",
+    context: "",
+    q: "In a regular grammar, the right hand side of each rule can have at most how many symbols?",
+    options: ["1", "2", "3", "any"],
+    answer: 1,
+    explanation: "",
+  },
+  {
+    contextType: "text",
+    context: "",
+    q: "In a context free grammar, the right hand side of each rule can have at most how many symbols?",
+    options: ["1", "2", "3", "no limit"],
+    answer: 3,
+    explanation: "",
+  },
+  {
+    contextType: "text",
+    context: "",
+    q: "In a context sensitive grammar, the right hand side of each rule can have at most how many symbols?",
+    options: ["1", "2", "3", "no limit"],
+    answer: 3,
+    explanation: "",
+  },
+  {
+    contextType: "text",
+    context: "",
+    q: "In a context free grammar, the left hand side of each rule can have at most how many symbols?",
+    options: ["1", "2", "3", "no limit"],
+    answer: 0,
+    explanation: "",
+  },
+  {
+    contextType: "text",
+    context: "Given the following regular grammar:\nS -> bA\nA -> aA\nA -> a",
+    q: "Given the following regular grammar: S -> bA; A -> aA; A -> a. Which is the corresponding regular expression?",
+    options: ["(a|b)+a", "(a|b)*a", "ba*", "ba+"],
+    answer: 3,
+    explanation: "",
+  },
+  {
+    contextType: "text",
+    context: "Given the following regular grammar:\nA -> bA\nA -> aA\nA -> a",
+    q: "Given the following regular grammar: A -> bA; A -> aA; A -> a. Which is the corresponding regular expression?",
+    options: ["b*aa", "(a|b)+a", "(a|b)*a", "a*ab"],
+    answer: 2,
+    explanation: "",
+  },
+  {
+    contextType: "text",
+    context:
+      "%%\n" +
+      '<YYINITIAL>" [^"]* " { quotedstring++; }\n' +
+      "<YYINITIAL>{KEYWORD} { keyword++; }\n" +
+      "<YYINITIAL>[a-zA-Z][a-zA-Z0-9]* { id++; }\n" +
+      "<YYINITIAL>[0-9]+ { num++; }\n" +
+      '<YYINITIAL>"/*" { yybegin(comment); }\n' +
+      '<comment>"*/" { yybegin(YYINITIAL); }\n' +
+      "\\r | \\n { }\n",
+    q: "Given the following regular expressions in JLex. Suppose that the input is BEGIN & END. What is the error message if we run the scanner?",
+    options: [
+      "& not expected",
+      "Unmatched input",
+      "null pointer error",
+      "no error message",
+    ],
+    answer: 1,
+    explanation: "",
+  },
+  {
+    contextType: "text",
+    context:
+      '%state comment\n%%\n<YYINITIAL>"/*" { ____________________ }\n...\n\\r | \\n { }\n. { }',
+    q: "In the following code for Assignment 2, which of the following should be in the missing action code in the underscored position?",
+    options: [
+      "yybegin(comment);",
+      "yybegin(YYINITIAL);",
+      "yyend(comment);",
+      "yyend(YYINITIAL);",
+    ],
+    answer: 0,
+    explanation: "",
+  },
+  {
+    contextType: "text",
+    context:
+      '%state comment\n%%\n<comment>"*/" { ____________________ }\n...\n\\r | \\n { }\n. { }',
+    q: "In the following code for Assignment 2, which of the following should be in the missing action code in the underscored position?",
+    options: [
+      "yybegin(comment);",
+      "yybegin(YYINITIAL);",
+      "yyend(comment);",
+      "yyend(YYINITIAL);",
+    ],
+    answer: 1,
+    explanation: "",
+  },
+  {
+    contextType: "text",
+    context: "",
+    q: "Given the following grammar, which of the following is the corresponding regular expression?\nA -> Aa\nA -> b",
+    options: [
+      "b+a",
+      "a+b",
+      "ba+",
+      "ba*",
+      "No corresponding regular expression.",
+    ],
+    answer: 3,
+    explanation: "",
+  },
+  {
+    contextType: "text",
+    context: "",
+    q: "Given the following CFG grammar, which of the following is the corresponding regular expression?\nA -> abA\nA -> ε",
+    options: [
+      "(ab)+",
+      "(a|b)*",
+      "(ab)*ab",
+      "(ab)*",
+      "No corresponding regular expression.",
+    ],
+    answer: 3,
+    explanation: "",
+  },
+  {
+    contextType: "text",
+    context: "",
+    q: "Which of the following is a regular grammar?",
+    options: [
+      "A -> aA | a",
+      "A -> aAA | aA | a",
+      "Aa -> aAa | a",
+      "aAa -> Aa | a",
+    ],
+    answer: 0,
+    explanation: "",
+  },
+  {
+    contextType: "text",
+    context: "",
+    q: "Which of the following is a context free grammar but not a regular grammar?",
+    options: [
+      "A -> aA | a",
+      "A -> aAA | aA | a",
+      "Aa -> aAa | a",
+      "aAa -> Aa | a",
+    ],
+    answer: 1,
+    explanation: "",
+  },
+  {
+    contextType: "text",
+    context: "",
+    q: "Given the following grammar, where A is a non-terminal, a is a terminal: A -> Aa | a. Which of the following is a correct derivation for string aaa?",
+    options: [
+      "A => Aa => aAa => aaa",
+      "A => aA => aaA => aaa",
+      "A => Aa => Aaa => aaa",
+      "A => Aa => AAa => Aaa => aaa",
+    ],
+    answer: 2,
+    explanation: "",
+  },
+  {
+    contextType: "text",
+    context: "",
+    q: "Given the following grammar, where A is a non-terminal, a and b are terminals: A -> Aba | a. Which of the following is a correct derivation for string ababa?",
+    options: [
+      "A => aA => Ababa => ababa",
+      "A => aba => aAaba => ababa",
+      "A => abA => ababA => ababa",
+      "A => Aba => Ababa => ababa",
+    ],
+    answer: 3,
+    explanation: "",
+  },
+  {
+    contextType: "text",
+    context: "",
+    q: "Given the following grammar, where A is a non-terminal, a, b, and ε are terminals: A -> Aba | ε. Which of the following can NOT be derived?",
+    options: ["ba", "baba", "ε", "ababa"],
+    answer: 3,
+    explanation: "",
+  },
+  {
+    contextType: "text",
+    context: "",
+    q: "Given the following grammar, where A is a non-terminal, a, b, and ε are terminals: A -> Aba | a | ε. Which of the following can NOT be derived?",
+    options: ["ba", "baba", "aba", "abab"],
+    answer: 3,
+    explanation: "",
+  },
+  {
+    contextType: "text",
+    context: "",
+    q: "Given the following grammar, where A is a non-terminal, a and ε are terminals: A -> Aa | a | ε. Which of the following statement is NOT true?",
+    options: [
+      "The grammar is redundant.",
+      "It will generate only one parse tree for any input string.",
+      "It is an ambiguous grammar.",
+      "We need to rewrite the grammar in our JavaCup parser generator.",
+    ],
+    answer: 1,
+    explanation: "",
+  },
 ];
 
-const LAST_TWELVE_START = Math.max(0, quizData.length - 12);
+const MIDTERM_START_QUIZ_TRIGGER = quizData.findIndex(
+  (question) => question.q === "Answer for Q1 is",
+);
+const MIDTERM_END_QUIZ_TRIGGER = quizData.findIndex(
+  (question) =>
+    question.q ===
+    "Given the following grammar, where A is a non-terminal, a and ε are terminals: A -> Aa | a | ε. Which of the following statement is NOT true?",
+);
+
+const MIDTERM_START = Math.max(
+  0,
+  MIDTERM_START_QUIZ_TRIGGER >= 0
+    ? MIDTERM_START_QUIZ_TRIGGER
+    : quizData.length - 6,
+);
+const MIDTERM_END = Math.max(
+  MIDTERM_START,
+  MIDTERM_END_QUIZ_TRIGGER >= 0
+    ? MIDTERM_END_QUIZ_TRIGGER
+    : quizData.length - 1,
+);
 const ALL_QUESTIONS_LABEL = "All Questions";
 
 function makeSectionRange(start, end) {
@@ -661,8 +1553,14 @@ const QUIZ_SECTIONS = [
   {
     id: "a3",
     label: "A3 and LR(0)",
-    description: `Last ${quizData.length - LAST_TWELVE_START} questions`,
-    questionIndexes: makeSectionRange(LAST_TWELVE_START, quizData.length - 1),
+    description: "Questions 32 - 41",
+    questionIndexes: makeSectionRange(31, 40),
+  },
+  {
+    id: "midterm",
+    label: "Midterm",
+    description: `Questions ${MIDTERM_START + 1} - ${MIDTERM_END + 1}`,
+    questionIndexes: makeSectionRange(MIDTERM_START, MIDTERM_END),
   },
 ];
 
